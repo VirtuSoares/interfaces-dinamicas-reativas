@@ -67,3 +67,21 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
   - O React detecta mudanças de estado comparando a **referência de memória** do valor anterior com o novo (*shallow comparison*). Quando mutamos um array ou objeto diretamente com `.push()`, o conteúdo interno muda, mas a referência de memória continua exatamente a mesma — fazendo com que o React não reconheça a atualização e não dispare uma nova renderização da tela, além de causar bugs imprevisíveis no ciclo de vida e no histórico de estados.
 - **Importância do spread operator (`[...carrinho, item]`):**
   - O *spread operator* cria uma **nova cópia rasa (novo array/objeto)** em um novo endereço de memória, preservando os itens anteriores e adicionando o novo item de forma **imutável**. Ao passar esse novo array para a função atualizadora do `useState`, o React identifica imediatamente a nova referência e re-renderiza apenas os componentes necessários com segurança.
+
+
+---
+
+### 📌 [Entregável 04 – Lifting State Up e useEffect](./Entregavel-04-Lifting-State-UseEffect) (Semana 11)
+- **Parte 1 – Exercício Guiado (`LiftingStateDemo`):** Elevação do estado compartilhado para o componente pai, sincronizando em tempo real dois componentes irmãos (`IrmaoEditor` e `IrmaoExibidor`).
+- **Parte 2 – Mini Projeto (Gerenciador de Tarefas):** `App` centraliza o array de tarefas, passando callbacks para o componente filho `Formulario` e os dados para o componente filho `Lista`. Um `useEffect` monitora `pendentes` e atualiza dinamicamente o `document.title` da aba do navegador.
+- **Parte 3 – Desafio (Timer com Cleanup):** `useEffect` utilizando `setInterval` para contabilizar o tempo ativo na página, executando `clearInterval` na função de retorno (*cleanup*) ao desmontar o componente.
+
+#### 📸 Preview da Aplicação
+<img width="516" height="486" alt="image" src="https://github.com/user-attachments/assets/2da185d7-1ab9-4aa7-a214-8c6879a419a8" />
+
+
+#### 🧠 Parte 4 – Reflexão: Omissão do array de dependências no useEffect e fluxo de dados no Lifting State Up
+- **O que acontece se omitirmos o array de dependências do `useEffect`?**
+  - Sem o array de dependências (`useEffect(() => { ... })`), o efeito é executado **após toda e qualquer renderização** do componente. Se dentro desse efeito houver uma atualização de estado (`setState`), isso provocará uma nova renderização, disparando o efeito novamente e criando um **loop infinito** que trava a aplicação e consome processamento desnecessário.
+- **Como funciona o fluxo de dados no Lifting State Up?**
+  - O React segue o fluxo unidirecional de dados (**"dados para baixo, eventos para cima"**): quando dois componentes irmãos precisam compartilhar ou modificar a mesma informação, movemos o estado para o ancestral comum mais próximo (componente pai). O pai envia o estado atual **para baixo via `props`** e envia funções atualizadoras (callbacks) que os filhos invocam para enviar **eventos para cima**, mantendo uma única fonte de verdade (*Single Source of Truth*).
