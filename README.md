@@ -49,3 +49,21 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
   1. **Poluição visual no JSX:** Componentes com muitos estados interativos (`hover`, `focus`) e breakpoints responsivos podem acumular strings extensas no atributo `className`, reduzindo a legibilidade inicial do markup.
   2. **Curva de aprendizado inicial:** Exige familiaridade com a nomenclatura específica das classes utilitárias do framework em vez de utilizar apenas propriedades CSS puras.
   3. **Necessidade de abstração rigorosa:** Sem uma boa quebra em componentes reutilizáveis no React, repetir conjuntos grandes de classes utilitárias dificulta manutenções globais.
+
+
+  ---
+
+### 📌 [Entregável 03 – Aplicação Interativa com Estado e Validação](./Entregavel-03-Estado-Carrinho-Checkout) (Semana 10)
+- **Parte 1 – Exercício Guiado (`Contador`):** Gerenciamento de estado numérico com `useState` demonstrando o ciclo de re-renderização ao incrementar, decrementar e zerar.
+- **Parte 2 – Mini Projeto (Carrinho de Compras):** Catálogo de produtos com adição imutável via *spread operator* (`[...carrinho, novoItem]`), remoção por identificador único, cálculo dinâmico do total com `.reduce()` e feedback visual temporário no botão ao adicionar.
+- **Parte 3 – Desafio (`CheckoutForm`):** Formulário de checkout com validação no envio (`onSubmit`), exibindo borda vermelha (`border-red-500`) e mensagem de erro caso o nome esteja vazio.
+
+#### 📸 Preview da Aplicação
+<img width="561" height="512" alt="image" src="https://github.com/user-attachments/assets/0b78b928-7704-4a65-9fc5-7c52ca84ffee" />
+
+
+#### 🧠 Parte 4 – Reflexão: Por que não mutar o estado diretamente e qual a importância do spread operator no React?
+- **Por que não devemos mutar o estado diretamente (ex: `carrinho.push(item)`):**
+  - O React detecta mudanças de estado comparando a **referência de memória** do valor anterior com o novo (*shallow comparison*). Quando mutamos um array ou objeto diretamente com `.push()`, o conteúdo interno muda, mas a referência de memória continua exatamente a mesma — fazendo com que o React não reconheça a atualização e não dispare uma nova renderização da tela, além de causar bugs imprevisíveis no ciclo de vida e no histórico de estados.
+- **Importância do spread operator (`[...carrinho, item]`):**
+  - O *spread operator* cria uma **nova cópia rasa (novo array/objeto)** em um novo endereço de memória, preservando os itens anteriores e adicionando o novo item de forma **imutável**. Ao passar esse novo array para a função atualizadora do `useState`, o React identifica imediatamente a nova referência e re-renderiza apenas os componentes necessários com segurança.
