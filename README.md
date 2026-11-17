@@ -126,3 +126,24 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
   - A cada clique em um link, o navegador realiza uma nova requisição HTTP ao servidor, descarta completamente a página atual, recarrega todos os arquivos (HTML, CSS, JS e imagens) do zero e causa um "piscar" branco na tela, perdendo o estado em memória da interface.
 - **Roteamento SPA (Single Page Application com React Router):**
   - A aplicação carrega uma única página HTML inicial (`index.html`) e o React Router intercepta a navegação utilizando a **History API** do navegador. Quando o usuário troca de rota, a URL é atualizada sem recarregar a página, e apenas os componentes correspondentes àquela rota são trocados no DOM em milissegundos, mantendo o estado global e garantindo uma experiência fluida semelhante a um aplicativo nativo.
+
+
+---
+
+### 📌 [Entregável 07 – Arquitetura do Projeto Final (Entrega Parcial)](./Entregavel-07-Arquitetura-Projeto-Final) (Semana 14)
+- **Parte 1 – Estrutura de Pastas:** Organização modular dividida em `components/`, `pages/`, `services/`, `contexts/` e `hooks/`.
+- **Parte 2 – Esqueleto do App:** Configuração do React Router com `Layout` padrão (`Header`, `Footer` e `<Outlet />`), 3 páginas conectadas no menu (`Início`, `Explorar API` e `Arquitetura`), serviço desacoplado em `services/api.js` consumido via custom hook `usePublicacoes` e componentes base (`Button` e `Card`) estilizados com Tailwind CSS.
+- **Parte 3 – Desafio (`ThemeContext` + `localStorage`):** Implementação da Context API para alternar globalmente entre tema claro e escuro, persistindo a escolha do usuário no `localStorage`.
+
+#### 📸 Preview da Aplicação
+<img width="1358" height="621" alt="image" src="https://github.com/user-attachments/assets/b3b81c0f-be4d-4c05-8f7a-6b31bef955dc" />
+<img width="1352" height="620" alt="image" src="https://github.com/user-attachments/assets/5c42d229-8c02-4a5f-86ce-c21e2b2890f0" />
+<img width="1362" height="621" alt="image" src="https://github.com/user-attachments/assets/e0a6fa9e-a7e4-4722-976b-9fd1139417cd" />
+
+
+#### 🧠 Parte 4 – Reflexão: Importância de separar pages, components e services em um projeto React
+- **Separação de Responsabilidades (Separation of Concerns):**
+  - **`components/`:** Mantém elementos visuais puros e genéricos (`Button`, `Card`, `Header`), garantindo reutilização em qualquer tela sem depender de regras de negócio ou fontes de dados específicas.
+  - **`pages/`:** Atua como camada de composição de rotas, organizando o layout de cada tela e conectando os dados aos componentes visuais.
+  - **`services/`:** Isola toda a comunicação externa (`fetch`, endpoints, headers e tratamento de respostas HTTP). Se a URL da API mudar ou precisarmos migrar para outra biblioteca de requisições, alteramos apenas o arquivo de serviço sem quebrar a interface.
+- **Impacto no crescimento do projeto:** Essa divisão evita arquivos gigantes e acoplados, facilita testes isolados, acelera o trabalho em equipe (pessoas diferentes podem atuar na UI e na integração de dados simultaneamente) e reduz drasticamente o custo de manutenção.
