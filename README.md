@@ -85,3 +85,22 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
   - Sem o array de dependências (`useEffect(() => { ... })`), o efeito é executado **após toda e qualquer renderização** do componente. Se dentro desse efeito houver uma atualização de estado (`setState`), isso provocará uma nova renderização, disparando o efeito novamente e criando um **loop infinito** que trava a aplicação e consome processamento desnecessário.
 - **Como funciona o fluxo de dados no Lifting State Up?**
   - O React segue o fluxo unidirecional de dados (**"dados para baixo, eventos para cima"**): quando dois componentes irmãos precisam compartilhar ou modificar a mesma informação, movemos o estado para o ancestral comum mais próximo (componente pai). O pai envia o estado atual **para baixo via `props`** e envia funções atualizadoras (callbacks) que os filhos invocam para enviar **eventos para cima**, mantendo uma única fonte de verdade (*Single Source of Truth*).
+
+---
+
+### 📌 [Entregável 05 – App Multi-Página com React Router (SPA)](./Entregavel-05-React-Router-SPA) (Semana 12)
+- **Parte 1 – Configuração:** Instalação do `react-router-dom` e estruturação das rotas com `BrowserRouter`, `Routes` e `Route`.
+- **Parte 2 – App Multi-Páginas & Layout:** Criação das páginas `Home`, `Listagem` e `Detalhes` aninhadas sob um `Layout` padrão utilizando `<Outlet />`, com `NavBar` fixa responsiva em Tailwind CSS e destaque visual de rota ativa via `NavLink`.
+- **Parte 3 – Desafio (Rota Dinâmica `/item/:id`):** Captura do parâmetro `id` diretamente da URL através do hook `useParams` para renderizar dinamicamente os detalhes de cada módulo.
+
+#### 📸 Preview da Aplicação
+<img width="1354" height="582" alt="image" src="https://github.com/user-attachments/assets/ae710f9d-8bc1-4fc7-a775-2261687c2ee9" />
+<img width="1365" height="626" alt="image" src="https://github.com/user-attachments/assets/3a0fdc07-7b98-4769-a9a7-4d55a7b11d7b" />
+<img width="1365" height="628" alt="image" src="https://github.com/user-attachments/assets/7fd298e7-422e-4e70-ba83-7f1cca6e924e" />
+
+
+#### 🧠 Parte 4 – Reflexão: Roteamento tradicional HTML vs. Roteamento SPA com React Router
+- **Roteamento Tradicional (Multi-Page Application – vários arquivos `.html`):**
+  - A cada clique em um link, o navegador realiza uma nova requisição HTTP ao servidor, descarta completamente a página atual, recarrega todos os arquivos (HTML, CSS, JS e imagens) do zero e causa um "piscar" branco na tela, perdendo o estado em memória da interface.
+- **Roteamento SPA (Single Page Application com React Router):**
+  - A aplicação carrega uma única página HTML inicial (`index.html`) e o React Router intercepta a navegação utilizando a **History API** do navegador. Quando o usuário troca de rota, a URL é atualizada sem recarregar a página, e apenas os componentes correspondentes àquela rota são trocados no DOM em milissegundos, mantendo o estado global e garantindo uma experiência fluida semelhante a um aplicativo nativo.
