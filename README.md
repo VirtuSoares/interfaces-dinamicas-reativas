@@ -94,9 +94,11 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
 - **Parte 3 – Desafio (Rota Dinâmica `/item/:id`):** Captura do parâmetro `id` diretamente da URL através do hook `useParams` para renderizar dinamicamente os detalhes de cada módulo.
 
 #### 📸 Preview da Aplicação
-<img width="1354" height="582" alt="image" src="https://github.com/user-attachments/assets/ae710f9d-8bc1-4fc7-a775-2261687c2ee9" />
-<img width="1365" height="626" alt="image" src="https://github.com/user-attachments/assets/3a0fdc07-7b98-4769-a9a7-4d55a7b11d7b" />
 <img width="1365" height="628" alt="image" src="https://github.com/user-attachments/assets/7fd298e7-422e-4e70-ba83-7f1cca6e924e" />
+<img width="1365" height="626" alt="image" src="https://github.com/user-attachments/assets/3a0fdc07-7b98-4769-a9a7-4d55a7b11d7b" />
+<img width="1354" height="582" alt="image" src="https://github.com/user-attachments/assets/ae710f9d-8bc1-4fc7-a775-2261687c2ee9" />
+
+
 
 
 #### 🧠 Parte 4 – Reflexão: Roteamento tradicional HTML vs. Roteamento SPA com React Router
