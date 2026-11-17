@@ -103,6 +103,26 @@ Repositório dedicado aos entregáveis da disciplina de Desenvolvimento de Inter
 
 #### 🧠 Parte 4 – Reflexão: Roteamento tradicional HTML vs. Roteamento SPA com React Router
 - **Roteamento Tradicional (Multi-Page Application – vários arquivos `.html`):**
+
+
+
+---
+
+### 📌 [Entregável 06 – Consumo de API Pública (PokeAPI)](./Entregavel-06-Consumo-API-PokeAPI) (Semana 13)
+- **Parte 1 – Exercício Guiado (`useEffect` + `async/await`):** Carga inicial assíncrona executada na montagem do componente dentro de um `useEffect`.
+- **Parte 2 – Mini Projeto (Buscador de Dados):** Formulário controlado por `useState` acionando a busca no `onSubmit`, gerenciando os estados visuais de **Loading** (spinner animado), **Error** (falhas de conexão) e **Success** (exibição em Card estilizado com Tailwind CSS).
+- **Parte 3 – Desafio (Tratamento de HTTP 404):** Verificação explícita de `resposta.status === 404` exibindo uma tela amigável de "Não Encontrado" com botão **Limpar Busca** para resetar os estados.
+
+#### 📸 Preview da Aplicação
+<img width="549" height="623" alt="image" src="https://github.com/user-attachments/assets/9ce117e7-2767-4a25-b8bc-5fe55330ddd4" />
+<img width="597" height="481" alt="image" src="https://github.com/user-attachments/assets/faf90861-a4d4-489f-b2f7-074d18c3911d" />
+
+
+#### 🧠 Parte 4 – Reflexão: Por que o useEffect é ideal para chamadas de API e como try/catch + response.ok tratam erros?
+- **Por que o `useEffect` é o local ideal para chamadas iniciais de API?**
+  - Chamadas de API são **efeitos colaterais** (*side effects*) externos ao fluxo puro de renderização do React. Executá-las diretamente no corpo do componente causaria requisições repetidas a cada re-renderização e loops infinitos ao atualizar o estado. O `useEffect` com array de dependências controlado garante que a requisição inicial ocorra somente após o componente ser montado no DOM (ou apenas quando uma dependência específica mudar).
+- **Como o `try/catch` e o `response.ok` lidam com erros de rede e erros HTTP?**
+  - A API nativa `fetch()` só rejeita a *Promise* (caindo no bloco `catch`) quando ocorre uma **falha de rede** (ex: usuário sem internet, DNS inválido ou servidor inacessível). Para respostas válidas do servidor com códigos de erro HTTP — como **`404` (Not Found)** ou **`500` (Internal Server Error)** — o `fetch` resolve normalmente, mas define `response.ok` como `false`. Por isso, verificar `if (!resposta.ok)` e lançar uma exceção (`throw new Error()`) permite capturar tanto erros HTTP quanto falhas de conexão no mesmo fluxo `try/catch` e exibir feedback adequado ao usuário.
   - A cada clique em um link, o navegador realiza uma nova requisição HTTP ao servidor, descarta completamente a página atual, recarrega todos os arquivos (HTML, CSS, JS e imagens) do zero e causa um "piscar" branco na tela, perdendo o estado em memória da interface.
 - **Roteamento SPA (Single Page Application com React Router):**
   - A aplicação carrega uma única página HTML inicial (`index.html`) e o React Router intercepta a navegação utilizando a **History API** do navegador. Quando o usuário troca de rota, a URL é atualizada sem recarregar a página, e apenas os componentes correspondentes àquela rota são trocados no DOM em milissegundos, mantendo o estado global e garantindo uma experiência fluida semelhante a um aplicativo nativo.
